@@ -5,6 +5,10 @@ var Tester = function( options ) {
         }
 
         	this.$el = $(options.element);
+        	this.purpleBelt = options.purpleBelt;
+        	this.blueBelt = options.blueBelt;
+
+			/*
 			this.moveList = options.list || [
 			"6 Four-Points Base",
 			"7 Elbow Escape Movement (3 Options)",
@@ -48,8 +52,12 @@ var Tester = function( options ) {
 			"85 Basic Armlock from Cross Body",
 			"87 Pass the Guard (Standing Up)"
 			];
+			*/
 
-			this.defaultSet = [6, 7, 8, 10, 11, 12, 13, 14,20,21,22,23,24,25,26,27,31,32,33,34,39,40,41,43,46,48,52,53,56,57,58,59,60,62,69,72,74,75,77,85,87];
+			this.moveList = [];
+			this.defaultBlue = [6, 7, 8, 10, 11, 12, 13, 14,20,21,22,23,24,25,26,27,31,32,33,34,39,40,41,43,46,48,52,53,56,57,58,59,60,62,69,72,74,75,77,85,87];
+			this.defaultPurple = [];
+
 			this.customSet = [];
 
 			this.moveTotal = 0;
@@ -58,6 +66,8 @@ var Tester = function( options ) {
 			this.$el.find("#getMove").on('click', this, this.getMove);
 			this.$el.find("#resetMoves").on('click', this, this.resetMoves);
 			this.$el.find('#selectMoves').on('click', this, this.setCustomList);
+
+			this.$el.find("[name=beltType]").on('change', this, this.createList);
 
 			this.init();
 
@@ -73,6 +83,7 @@ var Tester = function( options ) {
 			this.$el.find('#getMove').removeAttr('disabled' );
 			this.$el.find('#getMove').addClass('hide');
 
+			this.$el.find('#selectBeltType').removeClass('hide');
 			this.$el.find('#selectionList').removeClass('hide');
 			this.$el.find('#selectMoves').removeClass('hide');
 
@@ -155,7 +166,7 @@ var Tester = function( options ) {
 
 		Tester.prototype.setCustomList = function(event) {
 			var that = event.data;
-			that.$el.find('input:checked').each(function() {
+			that.$el.find('input[name=move]:checked').each(function() {
 				++that.moveTotal;
 				var moveIndex = parseInt($(this).val());
 				that.availableMoves.push((moveIndex + 1) +" " + that.moveList[moveIndex]);
@@ -164,27 +175,42 @@ var Tester = function( options ) {
 			that.$el.find('#getMove').removeClass('hide');
 			that.$el.find('#selectionList').addClass('hide');
 			that.$el.find('#selectMoves').addClass('hide');
+			that.$el.find('#selectBeltType').addClass('hide');
 
 			that.$el.find('#getMove').trigger('click');
 		}
 
-		Tester.prototype.createList = function() {
-			var that = this;
-			$.each(this.moveList, function(key){
+		Tester.prototype.createList = function(event) {
+			var that =  typeof event != 'undefined' ? event.data : this;
+
+			var beltType = that.$el.find('[name=beltType]:checked').val();
+
+			if (beltType === "blueBelt" ) {
+				that.moveList = that.blueBelt.slice();
+			}
+			if (beltType === "purpleBelt" ) {
+				that.moveList = that.purpleBelt.slice();
+			}
+
+			that.$el.find('#selectionList ul').empty();
+
+			$.each(that.moveList, function(key){
 			that.$el.find('#selectionList ul').append($("<li></li>").append(
 				$('<input />').attr({
 					'type': 'checkbox',
+					'name': 'move',
 					'value': key,
 					'id': key,
-					'checked': that.isDefault(key)
+					'checked': beltType === "blueBelt" ? that.isDefault(key, that.defaultBlue) : that.isDefault(key, that.defaultPurple) 
 				})).append($('<label><label>').attr('for', key).html((key + 1) +" "+that.moveList[key])));
 		});
 
 		}
 
-		Tester.prototype.isDefault = function(key){
-			for(var i = 0; i < this.defaultSet.length; i++) {
-				 if(key === (this.defaultSet[i]-1)) {
+		Tester.prototype.isDefault = function(key, defaultSet){
+
+			for(var i = 0; i < defaultSet.length; i++) {
+				 if(key === (defaultSet[i]-1)) {
 				 	return 'checked';
 				 }
 			}
@@ -197,7 +223,7 @@ $(function() {
 
 	var testerOptions = {
 		element: "#loader",
-		list: ["Tie the Belt",
+		blueBelt: ["Tie the Belt",
 "Roll Forward" ,
 "Roll Backward",
 "Bridge (Upa)",
@@ -284,7 +310,9 @@ $(function() {
 "Basic Armlock from Cross Body",
 "Bajana (Double Leg Takedown)",
 "Pass the Guard (Standing Up)",
-"Standing Hair/Ear Grab Defense"]
+"Standing Hair/Ear Grab Defense"],
+
+	purpleBelt: ["Double Ankle Grab Sweep", "Both Hands on Ankle Sweep to Armlock", "Push Sweep From Scissors", "Handstand Sweep", "Arm Inside Sweep", "Arm Inside Sweep to Armbar", "Sweep from Seated Guard", "Overhead Sweep", "Leg Pinching Sweep", "Scissor Sweep Standing from Guard", "Hook Sweep from Guard", "Kick over Sweep (Balloon)", "Sweep from Guard (Spider Guard)", "Star Sweep", "Sweep from Guard", "Sweep from Guard (Stand in Base-Holding the Belt)", "Sweep from Guard (Stand in Base-Holding the Collar)", "Sweep from Guard (Hand on Knee)", "Half Guard to Half Mount (Leg Straight)", "Half Guard to Half Mount (Leg Bent)", "Half Guard to Half Mount (Holding Belt)", "Sweep to Mount and Choke", "Shoulder Grab (Bent Arm)", "Shoulder Grab (Straight Arm)", "Lapel Grab With Both Hands", "Defense Against Front Thrust Kick", "Standing Guillotine Defense", "Both Hands Grab from Behind", "Standing Head Lock Defense (Taken to Ground)", "Two Hands Against Wall Defense", "Under Arm Collar Choke from Guard", "Mount to Back", "Achilles Ankle Lock (Passing Guard)", "Omo Plata", "Kimura from Cross Body", "Choke from Cross Body", "Cross Body to Knee on the Stomach", "Escape Knee on Stomach (Going to Knees)", "Armlock from Knee on Stomach", "Triangle Choke to Armbar", "Ankle lock When Passing Guard (Stacking)", "Knee Bar from Guard", "North South Foot Lock", "Ankle Lock from Open Guard", "Knife Stab Defense", "Overhead Knife Stab Defense", "Knee Bar from Cross Body", "Neck Crank from Cross Body", "Choke from Knee on Stomach", "Straight Armlock from Cross Body (Both Knees Up)", "Guard to Back", "Foot Lock from Back Mount (Feet Crossed)", "Helicopter Armbar", "Half Guard to Cross Body", "Escape from North South (Knees Under Armpits)", "Pass Half Guard to Mount", "Head & Arm Choke from Guard", "Choke from Half Mount", "Knee Bar from Passing Guard", "Choke from Guard (Holding your Elbow)", "Double Armlock", "Arm Trapped Armlock (Hand on Lapel)", "Squeeze the Bread (Both Hands)", "Shoulder Lock from Guard", "Escape Knee on Stomach by Making Hook", "Escape Knee on Stomach (Using Knees)", "Escape Knee on Stomach (Holding Belt)", "Choke from Knee on Stomach (Crossing Hands)", "Pass Guard & Defend Recompense", "Counter to Kimura", "Helio Gracie Choke from Mount", "Escape from Mount (Two Hands on Belt)", "Cross Body to Mount (Foot Between Legs)", "Cross Body to Mount (Holding Your Foot)", "Cross Body to Mount (Holding Opponent's Legs)", "Defense Against UPA (Locking Legs)", "Mount by Pushing Opponent's Legs", "Lapel Choke (Mount Going to North South)", "Defense Against Lapel Choke", "Squeeze the Bread from Mount (Nutcracker)", "Lapel Choke from Cross Body", "Counter Elbow Escape", "North South Escape to Choke", "North South Escape (Foot in Belt)", "North South to Back", "North South Escape to Armlock", "North South Position Fishing to Half Guard", "Choke from Guard (Using Gi)"]
 	}
 
 	var testme = new Tester(testerOptions);

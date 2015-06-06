@@ -26,6 +26,8 @@
 		max-width: 300px;
 	}
 
+	#selectBeltType { padding-left: 30px; }
+
 
 	p#displayMove {
 		font-size: 24px;

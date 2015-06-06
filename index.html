@@ -14,8 +14,18 @@
 	<main id="content">
 		<section>
 			<h2 id="header">Start Drilling!</h2>
-			<p id="intro">This app will help prepare you for your Blue Belt test. It will randomly 
-			select from a set of moves from Pedro Sauer's White to Blue List.
+			<p id="intro">This app will randomly 
+			order the selected moves from Pedro Sauer's Belt Requirements listed below.
+
+			<div id="selectBeltType">
+			<div>
+			<input type="radio" name="beltType" id="blueBelt" value="blueBelt" checked="checked"><label for="blueBelt">Blue Belt</label>
+			</div>
+			<div>
+			<input type="radio" name="beltType" id="purpleBelt" value="purpleBelt"><label for="purpleBelt">Purple Belt</label>
+			</div>
+			</div>
+
 			</p>
 			<p id="displayMove" class="hide"></p>
 		</section>
