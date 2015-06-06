@@ -6,16 +6,16 @@
 	header { background-color: dodgerblue; padding: 5px;}
 	footer {position: fixed; margin-top: -50px; background-color: #ebebeb; width: 100%;}
 	header h1 { font-weight: 500; margin: 0; }
-
 	
 	.hide { display: none; }
 
 
-	#getMove{ background-color: yellowgreen; }
-	#resetMoves { background-color: royalblue;}
+	#getMove, #selectMoves{ background-color: #00B233; }
+	#resetMoves { background-color: #B20000;}
+	
+	button[disabled="disabled"]#getMove { background-color: #ccc;}
 
-
-	#getMove, #resetMoves {
+	#getMove,#selectMoves, #resetMoves {
 		font-size: 1.75rem;
 		border-radius: 10px 10px 10px 10px;
 		-moz-border-radius: 10px 10px 10px 10px;
@@ -36,10 +36,13 @@
 	#previousList {
 		border-bottom: 1px solid #ccc;
 		border-top: 1px solid #ccc;
-	}	
+	}
+	#previousList ul { padding-left: 10px; list-style-position: inside;}
 
 	#container { display: flex; flex-direction: column; height: 100%;}
 	#content {flex: 1 1 100%; overflow-y: auto; min-height: 0px; margin-bottom: 20%;}
+	#selectionList ul { padding: 0 0 0 10px;}
+	#selectionList ul li { list-style: none; font-size: .75rem; margin: 0;}
 
 	#previousList .wrapper ul {
 	}
