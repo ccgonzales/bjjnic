@@ -1,17 +1,15 @@
 
 	html, body { height: 100%;}
 
-	body { background-color: #ebebeb; margin: 0; font-family: sans-serif; }
+	body { background-color: #ebebeb; margin: 0; font-family: 'Roboto', sans-serif; }
 	header, footer { height: 7%;}
-	footer {position: fixed; margin-top: -50px; background-color: #ebebeb;}
-	header h1 { margin: 0; }
-
-	main {  }
+	header { background-color: dodgerblue; padding: 5px;}
+	footer {position: fixed; margin-top: -50px; background-color: #ebebeb; width: 100%;}
+	header h1 { font-weight: 500; margin: 0; }
 
 	
 	.hide { display: none; }
 
-	
 
 	#getMove{ background-color: yellowgreen; }
 	#resetMoves { background-color: royalblue;}
@@ -28,12 +26,12 @@
 		max-width: 300px;
 	}
 
-	h1 { font-size: 32px; background-color: dodgerblue; padding: 5px; }
 
 	p#displayMove {
 		font-size: 24px;
 		height: 56px;
 	}
+	#moveCount { font-weight: 300; clear: both; font-size: 1rem;}
 
 	#previousList {
 		border-bottom: 1px solid #ccc;
@@ -41,7 +39,7 @@
 	}	
 
 	#container { display: flex; flex-direction: column; height: 100%;}
-	#content {flex: 1 1 100%; overflow-y: auto; min-height: 0px; margin-top: 10%; margin-bottom: 20%;}
+	#content {flex: 1 1 100%; overflow-y: auto; min-height: 0px; margin-bottom: 20%;}
 
 	#previousList .wrapper ul {
 	}

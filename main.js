@@ -76,7 +76,6 @@ var Tester = function( options ) {
 		Tester.prototype.getMove = function(event) {
 			var that = event.data;
 			var numberOfMoves = that.availableMoves.length;
-			console.log(numberOfMoves + " " + that.previousList.length);
 			var newMoveIndex = that._generateNumber(numberOfMoves)
 			
 			
@@ -93,7 +92,6 @@ var Tester = function( options ) {
 			that.previousMove = that.availableMoves[newMoveIndex];
 			that.availableMoves.splice(newMoveIndex, 1);
 
-
 		};
 
 		Tester.prototype._generateNumber = function(maxNumber) {
@@ -102,6 +100,7 @@ var Tester = function( options ) {
 
 		Tester.prototype._showMove = function(moveIndex) {
 			this.$el.find('#displayMove').html(this.availableMoves[moveIndex]);
+			this._updateCount();
 		};
 
 		Tester.prototype.addToPreviousList = function() {
@@ -126,6 +125,11 @@ var Tester = function( options ) {
 			var that = event.data;
 			that.init();
 		};
+
+		Tester.prototype._updateCount = function() {
+			this.$el.find('#displayMove').append($('<div id="moveCount"></div>').html((this.moveList.length - this.availableMoves.length + 1) + " of " + this.moveList.length));
+
+		}
 
 
 
