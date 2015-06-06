@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="jquery-2.1.4.min.js"></script>
+<script src="main.js"></script>
+<link rel="stylesheet" href="screen.css" type="text/css" />
+
+</head>
+<body id="loader">
+<section id="container">
+	<header><h1>BJJ Tester</h1></header>
+	<main id="content">
+		<section>
+			<h2 id="header">Start Drilling!</h2>
+			<p id="intro">This app will help prepare you for your Blue Belt test. It will randomly 
+			select from a set of moves from Pedro Sauer's White to Blue List.
+
+			<br/>
+			<br/>
+			Hit the button below to get started!
+			</p>
+			<p id="displayMove"></p>
+		</section>
+
+		<section id="previousList" style="visibility: hidden;">
+			<p>Previous Moves:</p>
+	
+			<ul></ul>
+		</section>
+	</main>
+		<footer>
+			<button id="getMove">Next Move</button>
+			<button id="resetMoves">Reset</button>
+		</footer>
+</section>
+</body>
+</html>
