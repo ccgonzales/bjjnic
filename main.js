@@ -65,6 +65,7 @@ var Tester = function( options ) {
 
 			this.$el.find("#getMove").on('click', this, this.getMove);
 			this.$el.find("#resetMoves").on('click', this, this.resetMoves);
+			this.$el.find('#clearMoves').on('click', this, this.clearMoves);
 			this.$el.find('#selectMoves').on('click', this, this.setCustomList);
 
 			this.$el.find("[name=beltType]").on('change', this, this.createList);
@@ -83,11 +84,6 @@ var Tester = function( options ) {
 			this.$el.find('#getMove').removeAttr('disabled' );
 			this.$el.find('#getMove').addClass('hide');
 
-			this.$el.find('#selectBeltType').removeClass('hide');
-			this.$el.find('#selectionList').removeClass('hide');
-			this.$el.find('#selectMoves').removeClass('hide');
-
-			this.$el.find('#previousList').css('visibility', 'hidden');
 			var offset = this.$el.find('#previousList').offset();
 			//this.$el.find('#previousList > ul').css('height', document.documentElement.clientHeight - (this.$el.find('#getMove').height() + offset.top));
 			this.$el.find('#previousList > ul').empty();
@@ -109,9 +105,7 @@ var Tester = function( options ) {
 			var newMoveIndex = that._generateNumber(numberOfMoves)
 			
 			
-			that.$el.find('#header').html('Current Move:');
 			that.$el.find('#intro').addClass('hide');
-
 			that.$el.find('#displayMove').removeClass('hide');
 			
 			numberOfMoves !== 0 ? that._displayMove(newMoveIndex) : that._showReset();
@@ -159,6 +153,13 @@ var Tester = function( options ) {
 			that.init();
 		};
 
+		Tester.prototype.clearMoves = function(event) {
+			var that = event.data;
+			that.$el.find('#selectionList input:checked').each(function() {
+				$(this).removeAttr('checked');
+			});
+		}
+
 		Tester.prototype._updateCount = function() {
 			this.$el.find('#displayMove').append($('<div id="moveCount"></div>').html((this.moveTotal - this.availableMoves.length + 1) + " of " + this.moveTotal));
 
@@ -173,9 +174,7 @@ var Tester = function( options ) {
 			});
 
 			that.$el.find('#getMove').removeClass('hide');
-			that.$el.find('#selectionList').addClass('hide');
-			that.$el.find('#selectMoves').addClass('hide');
-			that.$el.find('#selectBeltType').addClass('hide');
+			that.$el.find('#intro').addClass('hide');
 
 			that.$el.find('#getMove').trigger('click');
 		}
@@ -192,10 +191,10 @@ var Tester = function( options ) {
 				that.moveList = that.purpleBelt.slice();
 			}
 
-			that.$el.find('#selectionList ul').empty();
+			that.$el.find('#selectionList').empty();
 
 			$.each(that.moveList, function(key){
-			that.$el.find('#selectionList ul').append($("<li></li>").append(
+			that.$el.find('ul#selectionList').append($("<li></li>").append(
 				$('<input />').attr({
 					'type': 'checkbox',
 					'name': 'move',

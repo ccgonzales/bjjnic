@@ -11,11 +11,11 @@
 
 
 	#getMove, #selectMoves{ background-color: #00B233; }
-	#resetMoves { background-color: #B20000;}
+	#clearMoves { background-color: #B20000;}
 	
 	button[disabled="disabled"]#getMove { background-color: #ccc;}
 
-	#getMove,#selectMoves, #resetMoves {
+	#getMove,#selectMoves, #clearMoves {
 		font-size: 1.75rem;
 		border-radius: 10px 10px 10px 10px;
 		-moz-border-radius: 10px 10px 10px 10px;
@@ -29,7 +29,7 @@
 	#selectBeltType { padding-left: 30px; }
 
 
-	p#displayMove {
+	#displayMove p{
 		font-size: 24px;
 		height: 56px;
 	}
@@ -43,8 +43,8 @@
 
 	#container { display: flex; flex-direction: column; height: 100%;}
 	#content {flex: 1 1 100%; overflow-y: auto; min-height: 0px; margin-bottom: 20%;}
-	#selectionList ul { padding: 0 0 0 10px;}
-	#selectionList ul li { list-style: none; font-size: .75rem; margin: 0;}
+	#selectionList { padding: 0 0 0 10px;}
+	#selectionList li { list-style: none; font-size: .75rem; margin: 0;}
 
 	#previousList .wrapper ul {
 	}

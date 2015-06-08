@@ -7,15 +7,17 @@
 <script src="main.js"></script>
 <link rel="stylesheet" href="screen.css" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,500italic,400italic,300italic' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body id="loader">
 <section id="container">
 	<header><h1>BJJ Tester</h1></header>
 	<main id="content">
-		<section>
-			<h2 id="header">Start Drilling!</h2>
-			<p id="intro">This app will randomly 
-			order the selected moves from Pedro Sauer's Belt Requirements listed below.
+		<section id="intro">
+		
+			<p>This app will randomly 
+			order the selected moves from Pedro Sauer's Belt Requirements listed below.</p>
 
 			<div id="selectBeltType">
 			<div>
@@ -26,20 +28,24 @@
 			</div>
 			</div>
 
-			</p>
-			<p id="displayMove" class="hide"></p>
+			<ul id="selectionList"></ul>
+			
 		</section>
-		<section id="selectionList"><ul></ul></section>
-		<section id="previousList" style="visibility: hidden;">
-			<p>Previous Moves:</p>
-	
-			<ul></ul>
+		
+		<section id="displayMove" class="hide">
+		<h1>Current Move</h1>
+		<p></p>
+			<div id="previousList">
+				<p>Previous Moves:</p>
+		
+				<ul></ul>
+			</div>
 		</section>
 	</main>
 		<footer>
 			<button id="getMove">Next Move</button>
-			<button id="selectMoves">Set Moves</button>
-			<button id="resetMoves">Reset</button>
+			<button id="selectMoves">Start Drilling!</button>
+			<button id="clearMoves">Clear Moves</button>
 		</footer>
 </section>
 </body>
