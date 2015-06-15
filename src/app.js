@@ -22,10 +22,10 @@
         },
 
         handelMoveListUpdate: function(item) {
-          var tmp = [];
+          var tmp = this.state.moveItems.slice();
           tmp.push(item);
           this.setState({
-            moveItems: this.state.moveItems.push(item).slice()
+            moveItems: tmp
           });
         },
 
@@ -39,13 +39,12 @@
               <CheckboxList items={this.state.checkboxItems} updateMoveList={this.handelMoveListUpdate} />
             </div>
             <div>
-              <MoveList items={this.moveItems}/>
+              <MoveList items={this.state.moveItems}/>
             </div>
             </section>
           );
         }
       });
-
 
       var BeltOptions = React.createClass({
         changeListType: function() {
@@ -86,8 +85,9 @@
             <ul onChange={this.toggleMoveItem}>
               {
                 this.props.items.map(function(item, count) {
+                  var output = (count+1) + " " + item;
                   return <li key={item}>
-                    <input type='checkbox' value={count++} id={count} />
+                    <input type='checkbox' value={output} id={count} />
                       <label htmlFor={count}>{count} {item}</label>
                   </li>
                 })
@@ -98,23 +98,14 @@
       });
 
       var MoveList = React.createClass({
-        getInitialState: function() {
-            return {
-              items: []
-            }
-        },
-        // updateList: function() {
-        //   this.setState({
-        //     items: 
-        //   })
-        // },
+
         render: function() {
           return (
             <ul>
             {
-              this.state.items.map(function(moveItem, count){
+              this.props.items.map(function(moveItem, count){
                 return <li key={moveItem}>
-                  {count} {item}
+                  {moveItem}
                   </li>
               })
             }

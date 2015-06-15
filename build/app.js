@@ -22,10 +22,10 @@
         },
 
         handelMoveListUpdate: function(item) {
-          var tmp = [];
+          var tmp = this.state.moveItems.slice();
           tmp.push(item);
           this.setState({
-            moveItems: this.state.moveItems.push(item).slice()
+            moveItems: tmp
           });
         },
 
@@ -39,13 +39,12 @@
               React.createElement(CheckboxList, {items: this.state.checkboxItems, updateMoveList: this.handelMoveListUpdate})
             ), 
             React.createElement("div", null, 
-              React.createElement(MoveList, {items: this.moveItems})
+              React.createElement(MoveList, {items: this.state.moveItems})
             )
             )
           );
         }
       });
-
 
       var BeltOptions = React.createClass({displayName: "BeltOptions",
         changeListType: function() {
@@ -86,8 +85,9 @@
             React.createElement("ul", {onChange: this.toggleMoveItem}, 
               
                 this.props.items.map(function(item, count) {
+                  var output = (count+1) + " " + item;
                   return React.createElement("li", {key: item}, 
-                    React.createElement("input", {type: "checkbox", value: count++, id: count}), 
+                    React.createElement("input", {type: "checkbox", value: output, id: count}), 
                       React.createElement("label", {htmlFor: count}, count, " ", item)
                   )
                 })
@@ -98,23 +98,14 @@
       });
 
       var MoveList = React.createClass({displayName: "MoveList",
-        getInitialState: function() {
-            return {
-              items: []
-            }
-        },
-        // updateList: function() {
-        //   this.setState({
-        //     items: 
-        //   })
-        // },
+
         render: function() {
           return (
             React.createElement("ul", null, 
             
-              this.state.items.map(function(moveItem, count){
+              this.props.items.map(function(moveItem, count){
                 return React.createElement("li", {key: moveItem}, 
-                  count, " ", item
+                  moveItem
                   )
               })
             
