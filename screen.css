@@ -1,62 +1,163 @@
+html,
+body {
+  height: 100%;
+}
 
-	html, body { height: 100%;}
+body {
+  background-color: white;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: #444;
+}
 
-	body { background-color: #ebebeb; margin: 0; font-family: 'Roboto', sans-serif; }
-	header, footer { height: 7%;}
-	header { background-color: dodgerblue; padding: 5px;}
-	footer {position: fixed; margin-top: -50px; background-color: #ebebeb; width: 100%;}
-	header h1 { font-weight: 500; margin: 0; }
-	
-	.hide { display: none; }
+header {
+  background-color: dodgerblue;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 200%;
+}
 
+footer {
+  position: fixed;
+  margin-top: -50px;
+  background-color: #ebebeb;
+  width: 100%;
+}
 
-	#getMove, #selectMoves{ background-color: #00B233; }
-	#resetMoves { background-color: #B20000;}
-	
-	button[disabled="disabled"]#getMove { background-color: #ccc;}
+section {
+  padding: 2pt;
+}
 
-	#getMove,#selectMoves, #resetMoves {
-		font-size: 1.75rem;
-		border-radius: 10px 10px 10px 10px;
-		-moz-border-radius: 10px 10px 10px 10px;
-		-webkit-border-radius: 10px 10px 10px 10px;
-		border: 1px solid #cccccc;
-		cursor: pointer;
-		width: 48%;
-		max-width: 300px;
-	}
+header h1 {
+  font-weight: 500;
+  margin: 0;
+}
 
-	#selectBeltType { padding-left: 30px; }
+.hide {
+  display: none;
+}
 
+#getMove,
+#selectMoves {
+  background-color: #00b233;
+}
+#resetMoves {
+  background-color: #b20000;
+}
 
-	p#displayMove {
-		font-size: 24px;
-		height: 56px;
-	}
-	#moveCount { font-weight: 300; clear: both; font-size: 1rem;}
+button[disabled="disabled"]#getMove {
+  background-color: #ccc;
+}
 
-	#previousList {
-		border-bottom: 1px solid #ccc;
-		border-top: 1px solid #ccc;
-	}
-	#previousList ul { padding-left: 10px; list-style-position: inside;}
+#getMove,
+#selectMoves,
+#resetMoves {
+  font-size: 1.75rem;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  width: 48%;
+  max-width: 300px;
+}
 
-	#container { display: flex; flex-direction: column; height: 100%;}
-	#content {flex: 1 1 100%; overflow-y: auto; min-height: 0px; margin-bottom: 20%;}
-	#selectionList ul { padding: 0 0 0 10px;}
-	#selectionList ul li { list-style: none; font-size: .75rem; margin: 0;}
+#selectBeltType {
+  padding-left: 30px;
+}
 
-	#previousList .wrapper ul {
-	}
+p#displayMove {
+  font-size: 24px;
+  height: 56px;
+}
 
-	@media screen and (max-width: 414px), (max-height: 736px) {
-		header, main, footer { width: 100%;}
-  		footer {
-	/*		position: absolute;
-			bottom: 0;
-			align-self: flex-end;
-			-webkit-justify-content: space-around;
-			justify-content: space-around;
-	*/
-		}
-	}
+#moveCount {
+  font-weight: 300;
+  clear: both;
+  font-size: 1rem;
+}
+
+#previousList {
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+#previousList ul {
+  padding-left: 10px;
+  list-style-position: inside;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#content {
+  flex: 1 1 100%;
+  min-height: 0px;
+  margin-bottom: 20%;
+}
+
+#selectionList ul {
+  padding: 0 0 0 10px;
+}
+
+#selectionList ul li {
+  list-style: none;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+@media screen and (max-width: 414px), (max-height: 736px) {
+  header,
+  main,
+  footer {
+    width: 100%;
+  }
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  position: relative;
+  background-color: #f1f1f1;
+  color: #666;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+  border: 0;
+  cursor: pointer;
+  margin-right: 7px;
+  outline: none;
+}
+
+.form--radio {
+  border-radius: 50%;
+}
+
+input:checked::before {
+  position: absolute;
+  font: 13px/1 "Open Sans", sans-serif;
+  left: 11px;
+  top: 7px;
+  content: "\02143";
+  transform: rotate(40deg);
+}
+
+input:hover {
+  background-color: #f7f7f7;
+}
+
+input:checked {
+  background-color: #f1f1f1;
+}
+
+label {
+  font: 300 16px/1.7 "Open Sans", sans-serif;
+  color: #666;
+  cursor: pointer;
+}
