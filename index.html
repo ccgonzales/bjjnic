@@ -1,46 +1,56 @@
 <!doctype html>
 
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="jquery-2.1.4.min.js"></script>
-<script src="main.js"></script>
-<link rel="stylesheet" href="screen.css" type="text/css" />
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,500italic,400italic,300italic' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="jquery-2.1.4.min.js"></script>
+	<script src="main.js"></script>
+	<link rel="stylesheet" href="screen.css" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,500italic,400italic,300italic' rel='stylesheet'
+	 type='text/css'>
 </head>
+
 <body id="loader">
-<section id="container">
-	<header><h1>BJJ Tester</h1></header>
-	<main id="content">
-		<section>
-			<h2 id="header">Start Drilling!</h2>
-			<p id="intro">This app will randomly 
-			order the selected moves from Pedro Sauer's Belt Requirements listed below.
+	<section id="container">
+		<header>
+			<h1>BJJ Tester</h1>
+		</header>
+		<main id="content">
+			<section>
+				<h2 id="header">Start Drilling!</h2>
+				<p id="intro">This app will randomly
+					order the selected moves from Pedro Sauer's Belt Requirements listed below.
 
-			<div id="selectBeltType">
-			<div>
-			<input type="radio" name="beltType" id="blueBelt" value="blueBelt" checked="checked"><label for="blueBelt">Blue Belt</label>
-			</div>
-			<div>
-			<input type="radio" name="beltType" id="purpleBelt" value="purpleBelt"><label for="purpleBelt">Purple Belt</label>
-			</div>
-			</div>
+					<div id="selectBeltType">
+						<div>
+							<input class="form form--radio" type="radio" name="beltType" id="blueBelt" value="blueBelt" checked="checked"><label
+							 for="blueBelt">Blue
+								Belt</label>
+						</div>
+						<div>
+							<input class="form form--radio" type="radio" name="beltType" id="purpleBelt" value="purpleBelt"><label for="purpleBelt">Purple
+								Belt</label>
+						</div>
+					</div>
+				</p>
+				<p id="displayMove" class="hide"></p>
+			</section>
+			<section id="selectionList">
+				<ul></ul>
+			</section>
+			<section id="previousList" style="visibility: hidden;">
+				<p>Previous Moves:</p>
 
-			</p>
-			<p id="displayMove" class="hide"></p>
-		</section>
-		<section id="selectionList"><ul></ul></section>
-		<section id="previousList" style="visibility: hidden;">
-			<p>Previous Moves:</p>
-	
-			<ul></ul>
-		</section>
-	</main>
+				<ul></ul>
+			</section>
+		</main>
 		<footer>
 			<button id="getMove">Next Move</button>
 			<button id="selectMoves">Set Moves</button>
 			<button id="resetMoves">Reset</button>
 		</footer>
-</section>
+	</section>
 </body>
+
 </html>
